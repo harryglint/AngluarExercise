@@ -1,0 +1,36 @@
+<html ng-app="AE">
+    <head>
+        <title>Angular Exerice</title>
+    </head>
+
+    <body>        
+        <div ng-view></div>
+        1111-<span see-star></span>-222
+        <script src="libs/angular.min.js"></script>
+        <script src="libs/angular-route.js"></script>
+        <script>
+                    var ae = angular.module('AE', ['ngRoute']);
+                    ae.config(['$routeProvider', function($routeProvider) {
+                            $routeProvider.when('/seeStar', {templateUrl: 'partials/seeStar.html', controller: 'StarCrtl'});
+                            $routeProvider.otherwise({templateUrl: 'partials/welcome.html', controller: 'WelcomeCrtl'});
+                        }]);
+                    ae.controller('WelcomeCrtl', ['$scope',
+                        function($scope) {
+                            $scope.message = "ddddd";
+                        }
+                    ]);
+                    ae.controller('StarCrtl', ['$scope',
+                        function($scope) {
+                            $scope.message = "ddddd";
+                        }
+                    ]);
+                    ae.value('version', '0.1');
+                    ae.directive('seeStar', ['version', function(version) {
+                            return function(scope, elm, attrs) {
+                                elm.text(version);
+                            };
+                        }]);
+        </script>
+
+    </body>
+</html>
